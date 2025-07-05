@@ -7,20 +7,17 @@ Answer the following questions and provide the SQL queries used to find the answ
 SQL Queries:
 --1.
 SELECT
-  c.city,
-  al.country,
-  SUM(al.total_transaction_revenue::INTEGER) AS total_revenue
+  city,
+  country,
+  SUM(total_transaction_revenue::INTEGER) AS total_revenue
 FROM
-  all_sessions al
-JOIN
-  all_sessions c
-  USING(full_visitorid)
+  all_sessions
 WHERE
-  al.total_transaction_revenue IS NOT NULL
-  AND c.city != 'not available in demo dataset'
+  total_transaction_revenue IS NOT NULL
+  AND city != 'not available in demo dataset'
 GROUP BY
-  c.city,
-  al.country
+  city,
+  country
 ORDER BY
   total_revenue DESC;
 --2.
