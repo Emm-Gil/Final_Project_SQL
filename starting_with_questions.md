@@ -84,24 +84,109 @@ Answer: Theres 225 rows for city alone, but code does run.
 
 
 SQL Queries:
-
+1-- 
+SELECT *
+FROM (
+  SELECT
+    city,
+    v2_product_category,
+    COUNT(*) AS total_orders,
+    RANK() 
+		OVER (PARTITION BY city
+		ORDER BY COUNT(*) DESC) AS city_rank
+  FROM
+    all_sessions
+  JOIN
+    sales_by_sku 
+	USING(product_sku)
+  WHERE
+    city !='(not set)' AND city != 'not available in demo dataset'
+  	AND v2_product_category != '(notset)'
+  GROUP BY
+    city, v2_product_category
+)
+WHERE city_rank = 1
+2--
+SELECT *
+FROM (
+  SELECT
+    country,
+    v2_product_category,
+    COUNT(*) AS total_orders,
+    RANK() 
+		OVER (PARTITION BY country
+		ORDER BY COUNT(*) DESC) AS country_rank
+  FROM
+    all_sessions
+  JOIN
+    sales_by_sku 
+	USING(product_sku)
+  WHERE
+    country !='(not set)' AND v2_product_category != '(notset)'
+  GROUP BY
+    country, v2_product_category
+)
+WHERE country_rank = 1
 
 
 Answer:
-
-
-
+While some countries/cities have a more varied array of top categories, certain countries like Canada for example has a distinct leader
 
 
 **Question 4: What is the top-selling product from each city/country? Can we find any pattern worthy of noting in the products sold?**
 
 
 SQL Queries:
-
-
+1--
+WITH rank_tbl AS(
+SELECT
+    product_name,
+    city,
+    COUNT(*) AS num_ordered,
+    RANK() OVER (
+      PARTITION BY city
+      ORDER BY COUNT(*) DESC
+    ) AS rank
+  FROM
+    products p
+  JOIN
+    sales_by_sku ss ON p.sku = ss.product_sku
+  JOIN
+    all_sessions USING(product_sku)
+  WHERE 
+    city !='(not set)' AND city != 'not available in demo dataset'
+  GROUP BY
+    city, product_name
+)
+SELECT *
+FROM rank_tbl
+WHERE rank = 1
+2-- 
+WITH rank_tbl AS(
+SELECT
+    product_name,
+    country,
+    COUNT(*) AS num_ordered,
+    RANK() OVER (
+      PARTITION BY country
+      ORDER BY COUNT(*) DESC
+    ) AS rank
+  FROM
+    products p
+  JOIN
+    sales_by_sku ss ON p.sku = ss.product_sku
+  JOIN
+    all_sessions USING(product_sku)
+  WHERE 
+    country !='(not set)'
+  GROUP BY
+    country, product_name
+)
+SELECT *
+FROM rank_tbl
+WHERE rank = 1
 
 Answer:
-
 
 
 
