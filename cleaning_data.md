@@ -18,4 +18,10 @@ WHERE
   total_transaction_revenue IS NOT NULL
   AND city != 'not available in demo dataset'
 -- Removing NULLs and inconsistent data
-
+SELECT
+	city,
+	ROUND(AVG(total_ordered),2) AS average_orders
+-- Rounding average  to 2 decimal places to condense size of the row
+FROM
+	all_sessions al
+ 
