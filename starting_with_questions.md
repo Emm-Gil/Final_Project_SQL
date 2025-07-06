@@ -9,19 +9,17 @@ SQL Queries:
 --1.
 SELECT
   city,
-  country,
   SUM(total_transaction_revenue::INTEGER) AS total_revenue
 FROM
   all_sessions
 WHERE
   total_transaction_revenue IS NOT NULL
-  AND city != 'not available in demo dataset'
+AND city != '(not set)' AND city != 'not available in demo dataset'
 GROUP BY
-  city,
-  country
+  city
 ORDER BY
   total_revenue DESC;
---2.
+--2. COME BACK AND DEAL WITH THIS QUESTION
 SELECT
   country,
   SUM(total_transaction_revenue::INTEGER) AS total_revenue
@@ -61,7 +59,7 @@ WHERE
 GROUP BY
 	city
 ORDER BY
-	city
+	average_orders DESC
 -- 2.
 SELECT
 	country,
@@ -76,7 +74,7 @@ WHERE
 GROUP BY
 	country
 ORDER BY 
-	country
+	average_orders DESC
 ```
 
 
