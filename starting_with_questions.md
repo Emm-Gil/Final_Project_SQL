@@ -5,6 +5,7 @@ Answer the following questions and provide the SQL queries used to find the answ
 
 
 SQL Queries:
+```sql
 --1.
 SELECT
   city,
@@ -32,7 +33,7 @@ GROUP BY
   country
 ORDER BY
   total_revenue DESC;
-
+```
 
 
 Answer:
