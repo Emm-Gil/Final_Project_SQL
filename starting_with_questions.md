@@ -194,6 +194,55 @@ Answer:
 **Question 5: Can we summarize the impact of revenue generated from each city/country?**
 
 SQL Queries:
+-- 1
+WITH revenue AS
+	(SELECT
+		country,
+		SUM(unit_price*total_ordered) AS total_revenue
+	FROM
+		analytics an
+	JOIN
+		all_sessions al
+		ON an.visit_id = al.visitid
+	JOIN
+		sales_by_sku
+		USING(product_sku)
+	WHERE
+		country != '(not set)'
+	GROUP BY
+		country)
+SELECT
+	country,
+	TO_CHAR(total_revenue, 'FM999,999,999,999,990.00') AS dollar_revenue
+FROM
+	revenue
+ORDER BY
+	total_revenue DESC
+
+-- 2
+WITH revenue AS
+	(SELECT
+		city,
+		SUM(unit_price*total_ordered) AS total_revenue
+	FROM
+		analytics an
+	JOIN
+		all_sessions al
+		ON an.visit_id = al.visitid
+	JOIN
+		sales_by_sku
+		USING(product_sku)
+	WHERE
+		city != '(not set)'
+	GROUP BY
+		city)
+SELECT
+	city,
+	TO_CHAR(total_revenue, 'FM999,999,999,999,990.00') AS dollar_revenue
+FROM
+	revenue
+ORDER BY
+	total_revenue DESC
 
 
 
