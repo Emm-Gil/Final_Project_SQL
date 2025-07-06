@@ -46,6 +46,7 @@ Countries = United States, Israel, Australia
 
 
 SQL Queries:
+```sql
 -- 1.
 SELECT
 	city,
@@ -76,6 +77,7 @@ GROUP BY
 	country
 ORDER BY 
 	country
+```
 
 
 Answer: Theres 225 rows for city alone, but code does run.
@@ -85,6 +87,7 @@ Answer: Theres 225 rows for city alone, but code does run.
 
 
 SQL Queries:
+```sql
 1-- 
 SELECT *
 FROM (
@@ -128,7 +131,7 @@ FROM (
     country, v2_product_category
 )
 WHERE country_rank = 1
-
+```
 
 Answer:
 While some countries/cities have a more varied array of top categories, certain countries like Canada for example has a distinct leader
@@ -138,6 +141,7 @@ While some countries/cities have a more varied array of top categories, certain 
 
 
 SQL Queries:
+```sql
 1--
 WITH rank_tbl AS(
 SELECT
@@ -186,7 +190,7 @@ SELECT
 SELECT *
 FROM rank_tbl
 WHERE rank = 1
-
+```
 Answer:
 
 
@@ -195,6 +199,7 @@ Answer:
 **Question 5: Can we summarize the impact of revenue generated from each city/country?**
 
 SQL Queries:
+```sql
 -- 1
 WITH revenue AS
 	(SELECT
@@ -244,7 +249,7 @@ FROM
 	revenue
 ORDER BY
 	total_revenue DESC
-
+```
 
 
 Answer:
