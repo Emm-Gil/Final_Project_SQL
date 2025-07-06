@@ -204,7 +204,7 @@ SQL Queries:
 WITH revenue AS
 	(SELECT
 		country,
-		SUM(unit_price*total_ordered) AS total_revenue
+		SUM((unit_price / 1000000)*total_ordered) AS total_revenue
 	FROM
 		analytics an
 	JOIN
@@ -229,7 +229,7 @@ ORDER BY
 WITH revenue AS
 	(SELECT
 		city,
-		SUM(unit_price*total_ordered) AS total_revenue
+		SUM((unit_price / 1000000)*total_ordered) AS total_revenue
 	FROM
 		analytics an
 	JOIN
