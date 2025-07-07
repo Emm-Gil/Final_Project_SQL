@@ -40,10 +40,11 @@ By cleaning and joining data from different sources, I was able to obtain useful
 - Found the most reordered product by counting repeat purchases across visits
 - Used CTEs and `DISTINCT` logic to simplify and organize complex queries
 
-### 6. Build README and Document Work
+### 6. Build README and Upload ERD
 
 - Created a `README.md` file to summarize project goals, steps, wins and opportunities
 - Used Git and GitHub to track changes and submit the final version
+- Uploaded ERD to the repo
 
 ## Tools Used
 
