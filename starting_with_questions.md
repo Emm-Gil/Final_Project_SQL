@@ -80,7 +80,8 @@ ORDER BY
 
 Answer: 
 
-![city](./final_project_sql/images/cityq2/Screenshot 2025-07-05 at 10.17.55 PM.png)
+![city](./final_project_sql/images/cityq2/Screenshot2025-07-05at10.17.55 PM.png)
+
 
 
 **Question 3: Is there any pattern in the types (product categories) of products ordered from visitors in each city and country?**
