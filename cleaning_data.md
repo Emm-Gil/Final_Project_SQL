@@ -41,4 +41,12 @@ SELECT
   GROUP BY full_visitorid
 -- using MAX function to identify if a visit occured atleast once and to avoid double counting
 ```
+The visit times are also in Unix Time, in order to use the column I used:
+``` sql
+SELECT
+  visit_starttime,
+  TO_TIMESTAMP(visit_starttime::INTEGER) AS time
+FROM analytics
+```
+
  
