@@ -78,7 +78,9 @@ ORDER BY
 ```
 
 
-Answer: Theres 225 rows for city alone, but code does run.
+Answer: 
+
+![city](./final_project_sql/images/cityq2)
 
 
 **Question 3: Is there any pattern in the types (product categories) of products ordered from visitors in each city and country?**
