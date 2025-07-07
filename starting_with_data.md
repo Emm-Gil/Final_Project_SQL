@@ -6,6 +6,7 @@ SQL Queries:
 ``` sql
 SELECT
   CORR(an.pageviews::DOUBLE PRECISION, ss.total_ordered::DOUBLE PRECISION) AS corr_views_orders
+-- Both pageviews and total_ordered needed to be cast to double precision before I could succesfully run the `CORR()` function
 FROM
   analytics an
 JOIN
@@ -57,6 +58,7 @@ WITH visits AS(
 		END as status
 	FROM
 		analytics)
+-- creating table that includes: units_sold, visit_number, full_visitorid and defines the type of visit based on purchase activity
 SELECT
 	COUNT (DISTINCT full_visitorid) as num_of_visitors,
 	status
@@ -64,6 +66,7 @@ FROM
 	visits
 GROUP BY
 	status
+-- counting how many unique visitor ids are found in each previously defined visit category (eliminating duplicate rows)
 ```
 
 Answer: 2253 visitors purchased a unit on their first visit
@@ -72,7 +75,7 @@ Question 3: how many people did not purchase something on their first visit but 
 
 SQL Queries:
 ``` sql
--- first cte
+-- first cte is to create a table that includes: units_sold, visit_number, full_visitorid and defines the type of visit based on purchase activity
 WITH visits AS (
   SELECT
     units_sold,
@@ -86,7 +89,11 @@ WITH visits AS (
     END AS status
   FROM analytics
 ),
--- second cte
+-- second cte I used the `MAX()` function as a logical tool to check whether a specific condition occurred at least once for each visitor. `MAX()` works effectively here because the `CASE` statements return binary values. `MAX()` scans all visits for that user and returns `1` if the condition is met in any row, or `0` if it's never met.
+
+For example:
+```sql
+MAX(CASE WHEN visit_number = 1 AND status = 'First Time No Buy' THEN 1 ELSE 0 END)
 visit_status AS (
   SELECT
     full_visitorid,
@@ -96,6 +103,7 @@ visit_status AS (
     visits
   GROUP BY
     full_visitorid)
+-- Using `COUNT()` function with the a `WHERE` function to return the number of visitor ids that meet the defined requirements
 SELECT COUNT(*) AS num_visitors
 FROM visit_status
 WHERE first_no_buy = 1 AND second_buy = 1;
