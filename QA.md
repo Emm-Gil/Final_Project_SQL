@@ -1,6 +1,6 @@
 ## QUALITY ASSURANCE
 
-This database appeared to include many duplicates, around 60% of the analytics table is a duplicate row:
+One of the first things that became apparent about this database was that it included many duplicates, especially on the larger tables. For example, around 60% of the analytics table is a duplicate row:
 ```sql
 SELECT
 	COUNT(*)
