@@ -7,6 +7,7 @@ What issues will you address by cleaning the data?
 Queries:
 Below, provide the SQL queries you used to clean your data.
 
+``` sql
 SELECT
   city,
   country,
@@ -24,4 +25,5 @@ SELECT
 -- Rounding average  to 2 decimal places to condense size of the row
 FROM
 	all_sessions al
+```
  
