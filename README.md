@@ -72,6 +72,6 @@ By cleaning and joining data from different sources, I was able to obtain useful
 
 ## Future Goals
 
-- Create temporary tables to avoid needing to do mulitple joins frequently in queries
+- Create views and temporary tables to avoid needing to do mulitple joins frequently in queries
 - Address all incorrect data types, set to proper data type
 - Analyze visitor behaviour more thoroughly
