@@ -142,9 +142,3 @@ LIMIT 1;
 ```
 Answer: Learning Thermostat 3rd Gen-USA - White is the most reordered product
 
-
-Question 5: 
-
-SQL Queries:
-
-Answer:
