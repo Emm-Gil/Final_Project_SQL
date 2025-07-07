@@ -102,12 +102,43 @@ Answer:
 2891 visitors made a purchase on their second visit but not their first.
 
 
-Question 4: 
+Question 4: Which product was reordered the most?
 
 SQL Queries:
-
-Answer:
-
+```sql
+SELECT
+  product_sku,
+  product_name,
+  COUNT(DISTINCT full_visitorid) AS num_repeat_buyers
+FROM (
+	  SELECT an.full_visitorid,
+		 product_sku,
+		 COUNT(*) AS total_purchases
+	  FROM analytics an
+	  JOIN
+		all_sessions al
+		ON an.visit_id = al.visitid
+	  JOIN
+		sales_by_sku
+		USING(product_sku)
+	  WHERE
+		units_sold::INTEGER > 0
+	  GROUP BY
+		an.full_visitorid, product_sku
+	  HAVING
+		COUNT(*) > 1
+) AS repeated 
+JOIN
+	products p
+	ON p.sku=repeated.product_sku
+GROUP BY
+	product_sku,
+	product_name
+ORDER BY
+	num_repeat_buyers DESC
+LIMIT 1;
+```
+Answer: Learning Thermostat 3rd Gen-USA - White is the most reordered product
 
 
 Question 5: 
