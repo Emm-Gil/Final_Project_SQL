@@ -1,4 +1,4 @@
-##QUALITY ASSURANCE
+## QUALITY ASSURANCE
 
 This database appeared to include many duplicates, around 60% of the analytics table is a duplicate row:
 ```sql
