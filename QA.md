@@ -19,6 +19,7 @@ FROM (
 ) AS non_duplicate_rows;
 ```
 Count = 1,739,308
+
 Identifying this early in the process supporting proper data cleaning in order to obtain more accurate responses.
 
 With the number of rows in these tables, visually identifying a pattern proves difficult. Many rows contained null values, inconsistent data or irrelevant data.
