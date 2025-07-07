@@ -10,15 +10,18 @@ SQL Queries:
 SELECT
   city,
   SUM(total_transaction_revenue::INTEGER) AS total_revenue
+-- Casting total_trasaction_revenue as an integer to be able to run the `SUM()` function
 FROM
   all_sessions
 WHERE
   total_transaction_revenue IS NOT NULL
 AND city != '(not set)' AND city != 'not available in demo dataset'
+-- Removing irrelevant/unnecessary data
 GROUP BY
   city
 ORDER BY
   total_revenue DESC;
+-- Formatting the table to have the highest values first
 --2. 
 SELECT
   country,
@@ -49,17 +52,20 @@ SQL Queries:
 SELECT
 	city,
 	ROUND(AVG(total_ordered),2) AS average_orders
+-- Rounding the average of total_ordered to do decimal places for improved readability
 FROM
 	all_sessions al
 JOIN
 	sales_by_sku ss
 	USING(product_sku)
+-- Both tables have the exact same column name, chose to use `USING()` function here for simplicity
 WHERE
     city != '(not set)' AND city != 'not available in demo dataset'
 GROUP BY
 	city
 ORDER BY
 	average_orders DESC
+-- Formatting the table to have the highest values first
 -- 2.
 SELECT
 	country,
@@ -102,9 +108,11 @@ FROM (
     city,
     v2_product_category,
     COUNT(*) AS total_orders,
+-- Counts how many orders there were for each city-category combo
     RANK() 
 		OVER (PARTITION BY city
 		ORDER BY COUNT(*) DESC) AS city_rank
+--  Ranks the number of orders within each city
   FROM
     all_sessions
   JOIN
@@ -113,10 +121,12 @@ FROM (
   WHERE
     city !='(not set)' AND city != 'not available in demo dataset'
   	AND v2_product_category != '(notset)'
+-- Filters out unhelpful or incomplete city/category values
   GROUP BY
     city, v2_product_category
 )
 WHERE city_rank = 1
+-- Displays only the top ranked product categories for each city
 2--
 SELECT *
 FROM (
@@ -162,10 +172,12 @@ SELECT
     product_name,
     city,
     COUNT(*) AS num_ordered,
+-- Counts how many times each product was ordered in each city
     RANK() OVER (
       PARTITION BY city
       ORDER BY COUNT(*) DESC
     ) AS rank
+-- Ranks the products within each city by number of orders
   FROM
     products p
   JOIN
@@ -174,12 +186,14 @@ SELECT
     all_sessions USING(product_sku)
   WHERE 
     city !='(not set)' AND city != 'not available in demo dataset'
+-- Filters out unhelpful or incomplete city/category values
   GROUP BY
     city, product_name
 )
 SELECT *
 FROM rank_tbl
 WHERE rank = 1
+-- Displays only the top ranked product categories for each city
 2-- 
 WITH rank_tbl AS(
 SELECT
@@ -237,13 +251,17 @@ WITH revenue AS
 		country != '(not set)'
 	GROUP BY
 		country)
+-- Calculates revenue for each row by multiplying unit_price × total_ordered
+-- We were advised to divide unit price by 1000000
 SELECT
 	country,
 	TO_CHAR(total_revenue, 'FM999,999,999,999,990.00') AS dollar_revenue
+-- Formatting revenue to display it more similarly to currency
 FROM
 	revenue
 ORDER BY
 	total_revenue DESC
+--  Displays highest revenue first
 
 -- 2
 WITH revenue AS
