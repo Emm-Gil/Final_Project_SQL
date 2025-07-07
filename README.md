@@ -74,4 +74,3 @@ By cleaning and joining data from different sources, I was able to obtain useful
 - Create temporary tables to avoid needing to do mulitple joins frequently in queries
 - Address all incorrect data types, set to proper data type
 - Analyze visitor behaviour more thoroughly
-      - Disappointed to see there were no correlations between products purchased and page views/time spent on the site. Would like to review that further.
