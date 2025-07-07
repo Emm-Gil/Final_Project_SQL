@@ -90,10 +90,6 @@ WITH visits AS (
   FROM analytics
 ),
 -- second cte I used the `MAX()` function as a logical tool to check whether a specific condition occurred at least once for each visitor. `MAX()` works effectively here because the `CASE` statements return binary values. `MAX()` scans all visits for that user and returns `1` if the condition is met in any row, or `0` if it's never met.
-
-For example:
-```sql
-MAX(CASE WHEN visit_number = 1 AND status = 'First Time No Buy' THEN 1 ELSE 0 END)
 visit_status AS (
   SELECT
     full_visitorid,
