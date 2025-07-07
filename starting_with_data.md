@@ -92,6 +92,11 @@ visit_status AS (
     full_visitorid,
     MAX(CASE WHEN visit_number = 1 AND status = 'First Time No Buy' THEN 1 ELSE 0 END) AS first_no_buy,
     MAX(CASE WHEN visit_number = 2 AND status = 'Returning Buy' THEN 1 ELSE 0 END) AS second_buy
+-- Even though `MAX()` is typically used for numeric values, it works effectively here because the `CASE` statements return binary values (`1` for "true", `0` for "false"). When grouping by `full_visitorid`, `MAX()` scans all visits for that user and returns `1` if the condition is met in any row, or `0` if it's never met.
+
+For example:
+```sql
+MAX(CASE WHEN visit_number = 1 AND status = 'First Time No Buy' THEN 1 ELSE 0 END)
   FROM visits
   GROUP BY full_visitorid
 )
