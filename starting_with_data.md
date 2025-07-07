@@ -103,10 +103,10 @@ visit_status AS (
     visits
   GROUP BY
     full_visitorid)
--- Used `COUNT()` function with the a `WHERE` function to return the number of visitor ids that meet the defined requirements
 SELECT COUNT(*) AS num_visitors
 FROM visit_status
 WHERE first_no_buy = 1 AND second_buy = 1;
+-- Counting the number of visitorids that meet the specific requirements outlined in the `WHERE` function
 ```
 
 Answer:
