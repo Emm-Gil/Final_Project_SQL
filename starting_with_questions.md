@@ -80,7 +80,13 @@ ORDER BY
 
 Answer: 
 
-![city](./final_project_sql/images/cityq2/cityq2.png)
+CITY:
+
+![city2](./final_project_sql/images/cityq2/cityq2.png)
+
+COUNTRY
+
+![country2](./final_project_sql/images/countryq2/countryq2.png)
 
 
 
@@ -135,7 +141,14 @@ WHERE country_rank = 1
 ```
 
 Answer:
-While some countries/cities have a more varied array of top categories, certain countries like Canada for example has a distinct leader
+
+CITY:
+
+![city3](./final_project_sql/images/cityq3/cityq3.png)
+
+COUNTRY
+
+![country3](./final_project_sql/images/countryq3/countryq3.png)
 
 
 **Question 4: What is the top-selling product from each city/country? Can we find any pattern worthy of noting in the products sold?**
@@ -194,7 +207,13 @@ WHERE rank = 1
 ```
 Answer:
 
+CITY:
 
+![city4](./final_project_sql/images/cityq4/cityq4.png)
+
+COUNTRY
+
+![country](./final_project_sql/images/countryq4/countryq4.png)
 
 
 **Question 5: Can we summarize the impact of revenue generated from each city/country?**
@@ -255,7 +274,13 @@ ORDER BY
 
 Answer:
 
+CITY:
 
+![city5](./final_project_sql/images/cityq5/cityq5.png)
+
+COUNTRY
+
+![country5](./final_project_sql/images/countryq5/countryq5.png)
 
 
 
