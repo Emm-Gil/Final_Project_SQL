@@ -1,4 +1,4 @@
-Answer the following questions and provide the SQL queries used to find the answer.
+## Starting with Questions
 
     
 **Question 1: Which cities and countries have the highest level of transaction revenues on the site?**
@@ -19,7 +19,7 @@ GROUP BY
   city
 ORDER BY
   total_revenue DESC;
---2. COME BACK AND DEAL WITH THIS QUESTION
+--2. 
 SELECT
   country,
   SUM(total_transaction_revenue::INTEGER) AS total_revenue
