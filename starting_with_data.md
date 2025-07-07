@@ -89,7 +89,7 @@ WITH visits AS (
     END AS status
   FROM analytics
 ),
--- second cte I used the `MAX()` function as a logical tool to check whether a specific condition occurred at least once for each visitor. `MAX()` works effectively here because the `CASE` statements return binary values. `MAX()` scans all visits for that user and returns `1` if the condition is met in any row, or `0` if it's never met.
+-- second cte I used the `MAX()` to check whether a specific condition occurred at least once for each visitor. `MAX()` works here despite typically being used for numeric values because the `CASE` statements return binary values. `MAX()` scans all visits for that user and returns `1` if the condition is met in any row, or `0` if it's never met.
 visit_status AS (
   SELECT
     full_visitorid,
@@ -117,10 +117,13 @@ SELECT
   product_sku,
   product_name,
   COUNT(DISTINCT full_visitorid) AS num_repeat_buyers
+-- Selects the product sku, the product name and the number of unique visitors who bought the product more than once
 FROM (
+-- creating a subquery to identify a list of visitorids and products they repurchased
 	  SELECT an.full_visitorid,
 		 product_sku,
 		 COUNT(*) AS total_purchases
+-- Selects the visitorid, the product they bought and how many times they bought it
 	  FROM analytics an
 	  JOIN
 		all_sessions al
@@ -128,22 +131,30 @@ FROM (
 	  JOIN
 		sales_by_sku
 		USING(product_sku)
+-- Joins analytics with all_sessions using visit_id, then joins sales_by_sku using the shared product_sku.
 	  WHERE
 		units_sold::INTEGER > 0
+-- Filters to only include actual purchases
 	  GROUP BY
 		an.full_visitorid, product_sku
+-- Groups data by visitor and product
 	  HAVING
 		COUNT(*) > 1
+-- Confirms only keeping those visitor/product combos where the visitor bought the same product more than once.
 ) AS repeated 
 JOIN
 	products p
 	ON p.sku=repeated.product_sku
+-- Joins repeated with products usisng product_sku
 GROUP BY
 	product_sku,
 	product_name
+-- Groups data by product sku and by product name
 ORDER BY
 	num_repeat_buyers DESC
+-- Orders data with the highest number of repeat purchases in the first row
 LIMIT 1;
+--  Limits results to 1 single row
 ```
 Answer: Learning Thermostat 3rd Gen-USA - White is the most reordered product
 
