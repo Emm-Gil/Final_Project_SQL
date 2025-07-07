@@ -57,7 +57,7 @@ By cleaning and joining data from different sources, I was able to obtain useful
 
 - Created a normalized schema and defined foreign key relationships
 - Cleaned data and identified duplicates across large datasets (~4 million rows)
-- Used `CASE` statements, `JOIN`s, `WINDOW FUNCTIONS`, and `CTEs` to answer layered business questions
+- Used `CASE` statements, `JOIN`, `WINDOW FUNCTIONS`, and CTEs to answer layered business questions
 - Wrote queries to identify:
   - Visitors who purchased on returning visits
   - Most frequently reordered products
