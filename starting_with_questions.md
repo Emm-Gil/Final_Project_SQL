@@ -276,11 +276,12 @@ Answer:
 
 CITY:
 
-![city5](./final_project_sql/images/cityq5/cityq5.png)
+![country5](./final_project_sql/images/countryq5/countryq5.png)
 
 COUNTRY
 
-![country5](./final_project_sql/images/countryq5/countryq5.png)
+![city5](./final_project_sql/images/cityq5/cityq5.png)
+
 
 
 
