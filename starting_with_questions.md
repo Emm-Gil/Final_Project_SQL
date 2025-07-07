@@ -80,7 +80,7 @@ ORDER BY
 
 Answer: 
 
-![city](./final_project_sql/images/cityq2/Screenshot2025-07-05at10.17.55 PM.png)
+![city](./final_project_sql/images/cityq2/cityq2.png)
 
 
 
