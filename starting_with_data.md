@@ -92,6 +92,10 @@ visit_status AS (
     full_visitorid,
     MAX(CASE WHEN visit_number = 1 AND status = 'First Time No Buy' THEN 1 ELSE 0 END) AS first_no_buy,
     MAX(CASE WHEN visit_number = 2 AND status = 'Returning Buy' THEN 1 ELSE 0 END) AS second_buy
+  FROM
+    visits
+  GROUP BY
+    full_visitorid)
 SELECT COUNT(*) AS num_visitors
 FROM visit_status
 WHERE first_no_buy = 1 AND second_buy = 1;
