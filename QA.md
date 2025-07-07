@@ -20,7 +20,7 @@ FROM (
 ```
 Count = 1,739,308
 
-Identifying this early in the process supporting proper data cleaning in order to obtain more accurate responses.
+Identifying this early in the process supported proper data cleaning in order to obtain more accurate responses.
 
 With the number of rows in these tables, visually identifying a pattern proves difficult. Many rows contained null values, inconsistent data or irrelevant data.
 
@@ -50,7 +50,7 @@ SELECT
 FROM
 	analytics
 ```
-This confirms that the only social engagement type present in the table is "Not Socially Engaged", from this I decided that social engagement was not something I could use in a query to provide any insightful imformation.
+This confirms that the only social engagement type present in the table is "Not Socially Engaged", from this I decided that social engagement was not something I could use in a query to provide any insightful information.
 
 Some columns also contained entirely null values, like the userid column in the analytics table:
 ``` sql
