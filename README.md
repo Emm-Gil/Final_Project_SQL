@@ -1,5 +1,5 @@
 # Final SQL Project
-⭐EMMA GILBERT⭐
+⭐*Emma Gilbert*⭐
 
 ## Project/Goal
 
